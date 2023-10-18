@@ -1,0 +1,172 @@
+Q1, Create a vehicle class with an init method having instance variables as name_of_vehicle, max_speed
+and average_of_vehicle.
+ans:
+class Vehicle:
+    def __init__(self,name_of_vehicle,max_speed,average_of_vehicle):
+        self.name_of_vehicle=name_of_vehicle
+        self.max_speed=max_speed
+        self.average_of_vehicle=average_of_vehicle
+        
+v = Vehicle("Maruti Suzuki",200,"50km")
+    
+print("Name of vehicle is : " ,v.name_of_vehicle)
+print("Max speed is : ", v.max_speed)
+print("average_of_vehicle is :",v.average_of_vehicle)
+
+output:
+Name of vehicle is :  Maruti Suzuki
+Max speed is :  200
+average_of_vehicle is : 50km
+
+Q2. Create a child class car from the vehicle class created in Que 1, which will inherit the vehicle class.
+Create a method named seating_capacity which takes capacity as an argument and returns the name of
+the vehicle and its seating capacity.
+ans:
+class Vehicle:
+    def __init__(self,name_of_vehicle,max_speed,average_of_vehicle):
+        self.name_of_vehicle=name_of_vehicle
+        self.max_speed=max_speed
+        self.average_of_vehicle=average_of_vehicle
+        
+class car(Vehicle):
+    def __init__(self, name_of_vehicle, max_speed, average_of_vehicle):
+        # Call the constructor of the parent class using super()
+        super().__init__(name_of_vehicle, max_speed, average_of_vehicle)
+    
+    def seating_capacity(self,capacity):
+         return f"The {self.name_of_vehicle} has a seating capacity of {capacity} people."
+# Create an instance of the Car class
+
+my_car = car("Sedan", 160, 25)
+
+# Call the seating_capacity method
+capacity = 5
+result = my_car.seating_capacity(capacity)
+
+# Display the result
+print(result)
+      
+output is : The Sedan has a seating capacity of 5 people.
+
+Q3. What is multiple inheritance? Write a python code to demonstrate multiple inheritance.
+ans : multiple inheritance is a type of inheritance in which a child class inherit the properties of multiple parent classes.
+for example : a son inherit the properties or behaviour of both his father and mother.
+
+class Mangoes: #parent class1
+    def func1(self):
+        return "Mangoes are yellow in color:"
+    
+class Apples: #parent class2
+    def func2(self):
+        return "Apples are red in color:"
+    
+class fruit(Mangoes,Apples): #child class inherit hte properties of both parent class1 and parent class2
+    pass
+
+f=fruit()
+f.func2()
+
+output: Apples are red in color:'
+
+f.func1()
+output:'Mangoes are yellow in color:'
+
+Q4. What are getter and setter in python? Create a class and create a getter and a setter method in this
+class.
+ans:In Python, getter and setter methods are used to control access to an object's attributes (instance variables). 
+They are a way to encapsulate the internal state of an object and provide controlled access to that state. Getter 
+methods allow you to retrieve the value of an attribute, and setter methods allow you to modify or set the value 
+of an attribute, often with additional validation or logic.
+
+Here's how you can create a class with a getter and a setter method in Python:
+    
+class Student:
+    def __init__(self, name, age):
+        self._name = name  # Using a single underscore to indicate it's a "protected" attribute
+        self._age = age
+
+    # Getter method for 'name'
+    def get_name(self):
+        return self._name
+
+    # Setter method for 'name'
+    def set_name(self, name):
+        if len(name) < 30:
+            self._name = name
+        else:
+            print("Name is too long!")
+
+    # Getter method for 'age'
+    def get_age(self):
+        return self._age
+
+    # Setter method for 'age'
+    def set_age(self, age):
+        if age >= 0:
+            self._age = age
+        else:
+            print("Age cannot be negative!")
+
+# Create an instance of the Student class
+student = Student("John", 20)
+
+# Using the getter to retrieve the value of 'name'
+print("Name:", student.get_name())
+# Output: Name: John
+
+# Using the setter to modify the value of 'name'
+student.set_name("Alice")
+print("Modified Name:", student.get_name()) 
+# Output: Modified Name: Alice
+
+# Using the setter with validation
+student.set_name("This is a very long name, longer than 30 characters")
+print("Name after invalid modification:", student.get_name()) 
+# Output: Name after invalid modification: Alice
+
+# Using the getter to retrieve the value of 'age'
+print("Age:", student.get_age()) 
+# Output: Age: 20
+
+# Using the setter to modify the value of 'age'
+student.set_age(25)
+print("Modified Age:", student.get_age()) 
+# Output: Modified Age: 25
+
+# Using the setter with validation
+student.set_age(-5)
+print("Age after invalid modification:", student.get_age()) 
+# Output: Age after invalid modification: 25
+    
+
+
+Q5.What is method overriding in python? Write a python code to demonstrate method overriding.
+ans: method overriding : when we have the same name of method inside the parent and the child class
+then the method of child class will be called over here is called method overriding in python.
+The term "override" refers to a method in a subclass that replaces a method in a superclass when
+both methods share the same name, parameters, signature, and return type (or sub-type).
+
+example :
+class vehicle:
+    def start_engine(self):
+        return "engine is starting in the vehicle:"
+
+class car(vehicle):
+    def start_engine(self):
+        return "engine is starting in the car:"
+
+class motorcycle(vehicle):
+    def start_engine(self):
+        return "engine is starting in the motorcycle:"
+
+v=vehicle()
+c=car()
+m=motorcycle()
+m.start_engine()
+c.start_engine()
+v.start_engine()
+
+#output:
+    'engine is starting in the car:'
+    'engine is starting in the motorcycle:'
+    'engine is starting in the vehicle:'    
